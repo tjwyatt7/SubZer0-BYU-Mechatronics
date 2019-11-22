@@ -1,8 +1,8 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
-#define joy_xPin A1
-#define joy_yPin A2
+#define joy_xPin A0
+#define joy_yPin A1
 
 LiquidCrystal_I2C lcd(0x3F,16,2);
 int xVal = 0;
