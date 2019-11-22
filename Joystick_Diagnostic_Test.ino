@@ -13,22 +13,29 @@ void setup() {
   lcd.init();
   lcd.backlight();
   lcd.begin(16,2);
-  pinMode(joy_xPin, INPUT);
-  pinMode(joy_yPin, INPUT);
+ // pinMode(joy_xPin, INPUT);
+ // pinMode(joy_yPin, INPUT);
 
   lcd.setCursor(0,0);
   lcd.print("Ready");
   delay(3000);
   lcd.clear();
+
+  Serial.begin(9600);
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
   xVal = analogRead(joy_xPin);
   yVal = analogRead(joy_yPin);
+ // if (yVal > 511){
+   // lcd.print(analogRead(joy_yPin));
+  //  delay(500);
+  //  lcd.clear();
+  //}
 
-  
   lcd.print("xVal: " + xVal); // Print out current x-value
   lcd.print("/nyVal: " + yVal); // Print out current y-value
-  lcd.clear();                       // Clear out extra space
+  delay(250);
+  lcd.clear();
 }
