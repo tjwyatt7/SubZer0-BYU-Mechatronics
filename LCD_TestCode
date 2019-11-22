@@ -1,0 +1,33 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+LiquidCrystal_I2C lcd(0x3F,16,2);
+int i = 0;
+String numSec = "";
+int j = 0;
+
+void setup() {
+  // put your setup code here, to run once:
+  lcd.init();
+  lcd.backlight();
+  lcd.begin(16,2);
+
+  lcd.setCursor(0,0);
+  lcd.print("Ready");
+  delay(3000);
+  lcd.clear();
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  while (j < 1){
+    for (i = 0; i < 10; i++){
+      numSec = i + 1;
+      lcd.print(numSec + " seconds");
+      delay(1000);
+      lcd.clear();
+    }
+    j++;
+    lcd.print("Done");
+  }
+}
