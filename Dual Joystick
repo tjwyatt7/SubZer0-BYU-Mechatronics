@@ -1,0 +1,57 @@
+#include <Wire.h>
+#include <LiquidCrystal_I2C.h>
+
+#define joyr_xPin A0
+#define joyr_yPin A1
+#define joyl_xPin A2
+#define joyl_yPin A3
+
+LiquidCrystal_I2C lcd(0x3F,16,2);
+int xR = 0;
+int yR = 0;
+
+int xL = 0;
+int yL = 0;
+
+void setup() {
+  // put your setup code here, to run once:
+  lcd.init();
+  lcd.backlight();
+  lcd.begin(16,2);
+ // pinMode(joyr_xPin, INPUT);
+ // pinMode(joyr_yPin, INPUT);
+
+  lcd.setCursor(0,0);
+  lcd.print("Ready");
+  delay(3000);
+  lcd.clear();
+
+  Serial.begin(9600);
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+  xR = analogRead(joyr_xPin);
+  yR = analogRead(joyr_yPin);
+
+  xL = analogRead(joyl_xPin);
+  yL = analogRead(joyl_yPin);
+
+ // if (yVal > 511){
+   // lcd.print(analogRead(joy_yPin));
+  //  delay(500);
+  //  lcd.clear();
+  //}
+
+  lcd.setCursor(8,0);
+  lcd.print("xR: " + String(xR)); // Print out current x-value
+  lcd.setCursor(8,1);
+  lcd.print("yR: " + String(yR)); // Print out current y-value
+
+  lcd.setCursor(0,0);
+  lcd.print("xL: " + String(xL)); // Print out current x-value
+  lcd.setCursor(0,1);
+  lcd.print("yL: " + String(yL)); // Print out current y-value
+  delay(80);
+  lcd.clear();
+}
